@@ -28,7 +28,7 @@ export default {
         api_key: this.api_key,
       };
       return axios
-        .get(`https://api.themoviedb.org/3/movie/550?api_key=5ad2455a12cd749ceea122cfdf1861d7`, { params })
+        .get(`http://www.foxmovies.com/movies/fight-club`, { params })
         .then((response) => {
           this.movies = response.data.results; 
         });

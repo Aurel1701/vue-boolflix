@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     searchKeyword() {
-      this.$emit("searching", this.keySearch); //  farà l'emit
+      this.$emit("searching", this.keySearch); //  l'emit
     },
   },
 };
