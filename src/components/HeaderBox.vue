@@ -8,7 +8,7 @@
         v-model="keySearch"
         @keyup.enter="searchKeyword"
         type="text"
-        class="form-control me-3 border border-danger rounded"
+        class="form-control mt-3 border border-danger rounded"
         placeholder="Cerca un film"
         aria-label="Search"
       />
