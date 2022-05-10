@@ -33,7 +33,7 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 export default {
   name: "App",
   components: {},
@@ -44,6 +44,24 @@ export default {
       keySearch: "",
     };
   },
+   mounted(){
+     this.MovieSearch();
+
+  },
+  methods: {
+  MovieSearch(query){
+      const params = {
+        query: query,
+        api_key: this.api_key,
+      }
+      
+      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=ritorno+al+fut`, { params }).then((response) => {
+        this.movies = response.data.results;       
+      });
+    },
+}
+    
+
   //methods: {
    // searchMov(query) {
       //const params = {
