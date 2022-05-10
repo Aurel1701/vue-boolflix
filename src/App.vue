@@ -49,7 +49,7 @@ export default {
     };
   },
    mounted(){
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=LA_TUA_CHIAVE_API&query=matrix').then((response) => {
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=matrix').then((response) => {
     console.log(response.data);
     this.components = response.data.response;
     })
