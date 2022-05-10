@@ -46,6 +46,7 @@ export default {
       movies: [], // array film  da riempire tramite la chiamata con i film salvati
       api_key: "5ad2455a12cd749ceea122cfdf1861d7",
       keySearch: "",
+     
     };
   },
    mounted(){
