@@ -5,7 +5,11 @@
         <div class="logo-box d-flex">
           <img src="./assets/logo.png" alt="" />
         </div>
-        <input v-model="keySearch" type="text" class="form-control mt-3 border rounded" placeholder="Cerca un film"
+        <input
+          v-model="keySearch"
+          type="text"
+          class="form-control mt-3 border rounded"
+          placeholder="Cerca un film"
           aria-label="Search"
         />
         <button type="button" class="btn text-light rounded">Cerca</button>
@@ -20,7 +24,7 @@
       </div>
 
       <div class="d-flex justify-content-center">
-       <!-- <cards-box
+        <!--  <cards-box
           v-for="movie in movies"
           :key="movie.id"
           :info="movie"
@@ -45,23 +49,11 @@ export default {
     };
   },
    mounted(){
-     this.MovieSearch();
-
+    axios.get('https://api.themoviedb.org/3/search/movie?api_key=LA_TUA_CHIAVE_API&query=matrix').then((response) => {
+    console.log(response.data);
+    this.components = response.data.response;
+    })
   },
-  methods: {
-  MovieSearch(query){
-      const params = {
-        query: query,
-        api_key: this.api_key,
-      }
-      
-      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=ritorno+al+fut`, { params }).then((response) => {
-        this.movies = response.data.results;       
-      });
-    },
-}
-    
-
   //methods: {
    // searchMov(query) {
       //const params = {
@@ -81,7 +73,7 @@ export default {
       //this.searchMov(query);
     //},
   //},
-};
+},
 </script>
 
 <style lang="scss">
