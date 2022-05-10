@@ -73,7 +73,7 @@ export default {
       //this.searchMov(query);
     //},
   //},
-},
+}
 </script>
 
 <style lang="scss">
