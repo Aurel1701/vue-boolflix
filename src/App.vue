@@ -7,12 +7,13 @@
         </div>
         <input
           v-model="keySearch"
+          @keyup.enter="searchListMovie" 
           type="text"
           class="form-control mt-3 border rounded"
           placeholder="Cerca un film"
           aria-label="Search"
         />
-        <button type="button" class="btn text-light rounded">Cerca</button>
+        <button type="button" @click="movieSearch" class="btn text-light rounded">Cerca</button>
       </div>
     </header>
 
@@ -24,7 +25,7 @@
       </div>
 
       <div class="d-flex justify-content-center">
-        <!--  <cards-box
+         <!-- <cards-box
           v-for="movie in movies"
           :key="movie.id"
           :info="movie"
@@ -46,35 +47,22 @@ export default {
       movies: [], // array film  da riempire tramite la chiamata con i film salvati
       api_key: "5ad2455a12cd749ceea122cfdf1861d7",
       keySearch: "",
-     
     };
   },
-   mounted(){
-    axios.get('https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=matrix').then((response) => {
-    console.log(response.data);
-    this.components = response.data.response;
-    })
+  mounted() {
+     this.movieSearch();
   },
-  //methods: {
-   // searchMov(query) {
-      //const params = {
-        //query: query,
-       // api_key: this.api_key,
-     // };
-      //return axios
-       // .get(
-          //`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=ritorno+al+fut`,
-         // { params }
-       // )
-        //.then((response) => {
-          //this.movies = response.data.results;
-       // });
-   // },
-    //ricerca(query) {
-      //this.searchMov(query);
-    //},
-  //},
-}
+  methods: {
+     movieSearch(){
+      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=matrix`).then((response) => {
+        this.movies = response.data.results;       
+      });
+      
+    },
+
+  }
+  
+};
 </script>
 
 <style lang="scss">
