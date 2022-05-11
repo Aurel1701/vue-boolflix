@@ -5,15 +5,11 @@
         <div class="logo-box d-flex">
           <img src="./assets/logo.png" alt="" />
         </div>
-        <input
-          v-model="keySearch"
-          @keyup.enter="searchListMovie" 
-          type="text"
+        <input :model="keySearch" type="text"
           class="form-control mt-3 border rounded"
           placeholder="Cerca un film"
-          aria-label="Search"
         />
-        <button type="button" @click="movieSearch" class="btn text-light rounded">Cerca</button>
+        <button type="button" @click="movieSearch(keySearch)" class="btn text-light rounded">Cerca</button>
       </div>
     </header>
 
@@ -25,13 +21,15 @@
       </div>
 
       <div class="d-flex justify-content-center">
-         <!-- <cards-box
-          v-for="movie in movies"
-          :key="movie.id"
-          :info="movie"
-          :type="'movie'"
-        /> -->
-        <img id="" :src="``" />
+        <div class="box-film" :for="movie in movies">
+          <img id="" />
+          <ul>
+            <li>{{}}</li>
+            <li>{{}}</li>
+            <li>{{}}</li>
+            <li>{{}}</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
@@ -53,9 +51,10 @@ export default {
      this.movieSearch();
   },
   methods: {
-     movieSearch(){
-      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=matrix`).then((response) => {
-        this.movies = response.data.results;       
+     movieSearch(keySearch){
+      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=matrix`+ keySearch).then((response) => {
+        this.movies = response.data.results; 
+        console.log(this.movies)      
       });
       
     },
