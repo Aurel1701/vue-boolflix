@@ -1,16 +1,25 @@
 <template>
   <div id="app">
-     <div class="logo-box d-flex">
-          <img src="./assets/logo.png" alt="" />
-        </div>
+    <div class="logo-box d-flex">
+      <img src="./assets/logo.png" alt="" />
+    </div>
     <input type="text" v-model="searchText" />
-    <button @click="callApi">cliccami</button>
+    <button @click="firstFunction(); secondFunction();">cerca</button>
     <div v-if="movies">
       <div v-for="movie in movies.results" :key="movie.id">
         {{ movie.title }}
         {{ movie.original_title }}
         {{ movie.original_language }}
         {{ movie.vote_average }}
+      </div>
+    </div>
+    <!-- ricerca serie tv -->
+    <div v-if="series">
+      <div v-for="serie in series.results" :key="serie.id">
+        {{ serie.title }}
+        {{ serie.original_title }}
+        {{ serie.original_language }}
+        {{ serie.vote_average }}
       </div>
     </div>
   </div>
@@ -26,10 +35,11 @@ export default {
     return {
       searchText: "",
       movies: null,
+      series: null,
     };
   },
   methods: {
-    callApi() {
+   firstFunction() {
       axios
         .get(
           `https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=${this.searchText}`
@@ -38,6 +48,16 @@ export default {
           this.movies = resp.data;
           console.log(resp);
         });
+    },
+    secondFunction() {
+      axios
+      .get(
+        `https://api.themoviedb.org/3/search/tv?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=${this.searchText}`
+      )
+      .then((resp) => {
+         this.series = resp.data;
+      });
+
     },
   },
 };
