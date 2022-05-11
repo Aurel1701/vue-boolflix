@@ -5,11 +5,14 @@
         <div class="logo-box d-flex">
           <img src="./assets/logo.png" alt="" />
         </div>
-        <input v-model="keySearch" type="text"
-          class="form-control mt-3 border rounded"
-          placeholder="Cerca un film"
+
+        <input 
+        v-model="searchText" 
+        type="search"
+        class="form-control mt-3 border rounded"
+        placeholder="Cerca un film"
         />
-        <button type="button" @click="movieSearch(keySearch)" class="btn text-light rounded">Cerca</button>
+        <button type="button" @click="movieSearch" class="btn text-light rounded">Cerca</button>
       </div>
     </header>
 
@@ -21,41 +24,42 @@
       </div>
 
       <div class="d-flex justify-content-center">
-        <div class="box-film" :for="movie in movies">
-          <img id="" />
-          <ul>
-            <li>{{}}</li>
-            <li>{{}}</li>
-            <li>{{}}</li>
-            <li>{{ }}</li>
-          </ul>
+        <div v-for="movie in movies" :key="movie.id">
+          {{movie.original_title}}
+          
         </div>
+    
       </div>
     </div>
-  </div>
+  </div> 
 </template>
 
 <script>
 import axios from "axios";
+
 export default {
   name: "App",
   components: {},
-  data() {
+  data () {
     return {
-      movies: [], // array film  da riempire tramite la chiamata con i film salvati
+      movies: null, // array film  da riempire tramite la chiamata con i film salvati
       api_key: "5ad2455a12cd749ceea122cfdf1861d7",
-      keySearch: "",
-    };
-  },
-  mounted() {
-     
+      searchText: "",
+    }
   },
   methods: {
-     movieSearch(query){
-      return axios.get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=${query}`).then((response) => {
-        this.movie = response.data.results; 
-        console.log(this.movies)      
-      });
+     movieSearch(){
+      axios
+      .get(`https://api.themoviedb.org/3/search/movie?api_key=5ad2455a12cd749ceea122cfdf1861d7&query=${this.keySearch}`)
+      .then( response => {
+        //console.log(response.data.results)
+        this.movies = response.data.results;
+        console.log(this.movies, 'Movies');
+       
+      })
+      .catch(err => {
+        console.log(err);
+      })
       
     },
 
