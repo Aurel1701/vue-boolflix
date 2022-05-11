@@ -10,7 +10,7 @@
          <img :src="ImageCard(movie.poster_path)" alt="">
         {{ movie.title }}
         {{ movie.original_title }}
-        {{ movie.original_language }}
+        <listflag :iso="movie.original_language"/>
         {{ movie.vote_average }}
       </div>
     </div>
@@ -39,6 +39,7 @@ export default {
       api_key:'5ad2455a12cd749ceea122cfdf1861d7',
       movies: null,
       series: null,
+      falgs:['it','ja','en','fr']
     };
   },
   methods: {
