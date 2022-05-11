@@ -7,6 +7,7 @@
     <button @click="firstFunction(); secondFunction();">cerca</button>
     <div v-if="movies">
       <div v-for="movie in movies.results" :key="movie.id">
+         <img :src="ImageCard(movie.poster_path)" alt="">
         {{ movie.title }}
         {{ movie.original_title }}
         {{ movie.original_language }}
@@ -16,6 +17,7 @@
     <!-- ricerca serie tv -->
     <div v-if="series">
       <div v-for="serie in series.results" :key="serie.id">
+         <img :src="ImageCard(serie.poster_path)" alt="">
         {{ serie.title }}
         {{ serie.original_title }}
         {{ serie.original_language }}
@@ -59,6 +61,9 @@ export default {
       });
 
     },
+    ImageCard(name) {
+      return `https://image.tmdb.org/t/p/w342/${name}`
+    }
   },
 };
 </script>
