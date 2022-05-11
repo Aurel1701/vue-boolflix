@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       searchText: "",
+      api_key:'5ad2455a12cd749ceea122cfdf1861d7',
       movies: null,
       series: null,
     };
@@ -62,7 +63,7 @@ export default {
 
     },
     ImageCard(name) {
-      return `https://image.tmdb.org/t/p/w342/${name}`
+      return `https://image.tmdb.org/t/p/w300/${name}`
     }
   },
 };
