@@ -12,8 +12,8 @@
         {{ movie.original_title }}
         {{ movie.overview }}
         <flag :iso="movie.original_language" />
-        {{ movie.vote_average }}
-        <star-rating />
+        
+        <star-rating :rating="Math.ceil(parseInt(movie.vote_average) / stella)"/>
       </div>
     </div>
     <!-- ricerca serie tv -->
@@ -23,7 +23,8 @@
         {{ serie.title }}
         {{ serie.original_title }}
         {{ serie.original_language }}
-        {{ serie.vote_average }}
+         <star-rating :rating="Math.ceil(parseInt(serie.vote_average) / stella)"/>
+        
       </div>
     </div>
   </div>
@@ -43,7 +44,9 @@ export default {
       api_key:'5ad2455a12cd749ceea122cfdf1861d7',
       movies: null,
       series: null,
+      stella: 2,
       falgs:['it','ja','en','fr']
+      
     };
   },
   methods: {
@@ -74,6 +77,9 @@ export default {
       return `https://image.tmdb.org/t/p/w342/${name}`
     }
   },
+  getVote(vote) {
+      return Math.ceil(vote / 2)
+    }
 };
 </script>
 
