@@ -10,8 +10,10 @@
          <img :src="ImageCard(movie.poster_path)" alt="">
         {{ movie.title }}
         {{ movie.original_title }}
-        <listflag :iso="movie.original_language"/>
+        {{ movie.overview }}
+        <flag :iso="movie.original_language" />
         {{ movie.vote_average }}
+        <star-rating />
       </div>
     </div>
     <!-- ricerca serie tv -->
@@ -29,10 +31,12 @@
 
 <script>
 import axios from "axios";
-
+import StarRating from 'vue-star-rating'
 export default {
   name: "App",
-  components: {},
+  components: {
+     StarRating, 
+  },
   data() {
     return {
       searchText: "",
